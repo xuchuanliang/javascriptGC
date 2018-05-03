@@ -22,3 +22,12 @@ Object的每个实例都具有一下下列属性和方法：
 - toLocalString:返回对象的字符串表示，与执行环境地区对应
 - toString():返回对象的字符串标识
 - valueOf():返回对象的字符串、数值或布尔值表示
+###ECMAScript中没有块级作用域，循环语句，条件语句等代码块中的变量可以被外界访问到
+##函数
+function functionName(arg1,arg2){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements  
+}  
+ECMAScript函数不关心函数中的形参个数有多少个，最终都会放入一个arguments对象中，这个对象类似于数组，参数可以直接从arguments对象中取，如arguments[i]
+函数传入了多少参数，可以通过arguments.length来查看<br/>
+在ECMAScript中，命名的参数只提供便利，但不是必须的。
+###由于ECMAScript中函数形参都是以arguments对象表示，所以没有函数重载的概念，相同名称的函数，均已后定义的为准
