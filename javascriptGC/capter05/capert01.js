@@ -64,3 +64,45 @@
 // }
 // obj.say = say;
 // obj.say();
+
+//apple()
+// function sum(n1,n2){
+//     return n1+n2;
+// }
+// function callSum1(n1,n2){
+//     return sum.apply(this,arguments);
+// }
+// function callSum2(n1,n2){
+//     return sum.apply(this,[n1,n2]);
+// }
+// console.log(callSum1(10,10));//20
+// console.log(callSum2(10,10))//20
+
+//call()
+// var color="red";
+// var o = {
+//     color:"blue"
+// }
+// var c = {
+//     color:"red"
+// }
+// function sayColor(){
+//     console.log(this.color);
+// }
+// sayColor.call(c);//red
+// sayColor.call(o);//blue
+
+//bind()
+var o = {
+    color:"Red"
+}
+var c = {
+    color:"blue"
+}
+function sayColor(){
+    console.log(this.color);
+}
+var objSayColor = sayColor.bind(o);
+objSayColor();//red
+var objSayColor = sayColor.bind(c);
+objSayColor();//blue
