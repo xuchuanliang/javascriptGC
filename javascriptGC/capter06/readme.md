@@ -29,3 +29,29 @@
 - 构造函数与其他函数的区别：<br/>
 构造函数与其他函数的唯一区别，就在于调用他们的方式不同。构造函数仍然是函数，不存在定义构造函数的特殊语法。任何函数，只要通过new
 操作符来调用，那他跟普通函数也不会有什么两样。
+###原型模式
+- 创建的每个函数都有一个prototype属性，这个属性是一个指针，指向一个对象，而这个对象的用途时包含可以由特定类型的所有实例共享的属性和方法。prototype(原型)属性中的属性和方法
+是由所有实例共享的
+- 无论是什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向了函数的原型对象。默认情况下，
+所有原型对象都会自动获得一个constructor属性，这个属性包含一个指向prototype属性所在函数的指针。如Person.prototype.constructor指向了Person
+如：console.log(Person===Person.prototype.constructor);//true
+- 每当代码读取到某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实力本身开始。如果在实例中 
+找到了具有给定名字的属性，则返回该属性的值；如果没有找到，则继续搜索指针指向的原型对象，如果在原型对象中找到了，则返回该属性的值，否则搜索解决。
+- in操作符
+- 注意以下代码<br/>
+此种方法相当于在Person最初的原型对象中增加属性和方法：
+function Person(){}
+Person.prototype.name = "snail";
+Person.prototype.age = 24;
+Person.prototype.say = function(){console.log(this.name);};<br/>
+此种方法相当于给Person的原型对象更换为一个新的原型对象，会导致constructor方法没有被覆盖，如果必要，则需要重新覆盖构造方法<br/>
+Person.prototype = {
+    name : "snail",
+    age:24,
+    say:function(){
+        console.log(this.name);
+    },
+    constructor:Person
+}
+- 原型对象的缺点:1.省略了为构造函数传递初始化参数，结果所有的实例在默认情况下都将取得相同的属性值
+2.原型对象中的所有属性和方法都是被所有实例共享的，这个特点对引用类型变量影响比较严重
